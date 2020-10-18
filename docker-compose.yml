@@ -1,0 +1,23 @@
+version: '3'
+services:
+  db:
+    image: postgres
+    volumes:
+      - ./create_tables.sql:/docker-entrypoint-initdb.d/create_tables.sql
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: Welcome
+
+  app:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    environment:
+      username: postgres
+      password: Welcome
+      url: db:5432/postgres
+    ports:
+      - "8080:8080"
