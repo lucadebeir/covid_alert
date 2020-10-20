@@ -1,6 +1,7 @@
 package com.polytechmtp.covidalert.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -8,6 +9,7 @@ import java.util.List;
 
 @Entity(name="locations")
 @Access(AccessType.FIELD)
+@JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
 public class Location {
     @Id
     private String location_id;

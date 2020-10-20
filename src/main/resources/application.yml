@@ -5,3 +5,6 @@ spring:
     password: Welcome
     hikari:
       connectionTimeout: 30000
+
+app:
+  version: 1.0.0
