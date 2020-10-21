@@ -9,8 +9,8 @@ version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '15'
 
 java {
-	sourceCompatibility = JavaVersion.toVersion('8')
-	targetCompatibility = JavaVersion.toVersion('8')
+	sourceCompatibility = JavaVersion.toVersion('15')
+	targetCompatibility = JavaVersion.toVersion('15')
 }
 
 repositories {
