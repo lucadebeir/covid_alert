@@ -20,12 +20,13 @@ public class UsersController {
     private UserRepository userRepository ;
 
     @GetMapping
+    @RequestMapping(method = RequestMethod.GET)
     public List<User> list(){
         return userRepository.findAll();
     }
 
     @GetMapping
-    @RequestMapping("{id}")
+    @RequestMapping(value = "{id}", method = RequestMethod.GET)
     public User get (@PathVariable Long id) {
         if (userRepository.findById(id).isEmpty()) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND,"User with ID "+id+" not found");
@@ -39,7 +40,7 @@ public class UsersController {
         return userRepository.saveAndFlush(user);
     }
 
-    @RequestMapping(value = "{id}", method=RequestMethod.DELETE )
+    @RequestMapping(value = "{id}", method = RequestMethod.DELETE)
     public void delete ( @PathVariable Long id){
         if (userRepository.findById(id).isEmpty()) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND,"User with ID "+id+" not found");
@@ -49,7 +50,7 @@ public class UsersController {
     }
 
     @PutMapping
-    @RequestMapping(value="{id}", method=RequestMethod.PUT)
+    @RequestMapping(value="{id}", method = RequestMethod.PUT)
     public User update (@PathVariable Long id , @RequestBody User user) {
         // TODO: Ajouter ici une validation si tous les champs ont ete passes
 
