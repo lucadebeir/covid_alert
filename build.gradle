@@ -6,11 +6,11 @@ plugins {
 
 group = 'com.polytech-mtp'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '15'
+sourceCompatibility = '11'
 
 java {
-	sourceCompatibility = JavaVersion.toVersion('15')
-	targetCompatibility = JavaVersion.toVersion('15')
+	sourceCompatibility = JavaVersion.toVersion('11')
+	targetCompatibility = JavaVersion.toVersion('11')
 }
 
 repositories {

@@ -13,13 +13,11 @@ keycloak:
   realm: Covid-alert
   auth-server-url: http://keycloak:8080/auth
   ssl-required: external
-  resource: covid-alert
+  resource: springboot-microservice
   credentials:
-    secret: f3710609-b106-4c41-b1be-537cee5f84cf
+    secret: 0444b510-8532-4a50-9eea-a031e53b5acb
   use-resource-role-mappings: true
   bearer-only: true
-  verify-token-audience: true
-  cors: true
 
 server:
   port: 8000
