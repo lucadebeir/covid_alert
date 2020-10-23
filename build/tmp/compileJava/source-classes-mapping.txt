@@ -1,0 +1,14 @@
+com/polytechmtp/covidalert/models/Location.java
+ com.polytechmtp.covidalert.models.Location
+com/polytechmtp/covidalert/repositories/LocationRepository.java
+ com.polytechmtp.covidalert.repositories.LocationRepository
+com/polytechmtp/covidalert/controllers/UsersController.java
+ com.polytechmtp.covidalert.controllers.UsersController
+com/polytechmtp/covidalert/controllers/LocationsController.java
+ com.polytechmtp.covidalert.controllers.LocationsController
+com/polytechmtp/covidalert/models/User.java
+ com.polytechmtp.covidalert.models.User
+com/polytechmtp/covidalert/repositories/UserRepository.java
+ com.polytechmtp.covidalert.repositories.UserRepository
+com/polytechmtp/covidalert/CovidAlertApplication.java
+ com.polytechmtp.covidalert.CovidAlertApplication
