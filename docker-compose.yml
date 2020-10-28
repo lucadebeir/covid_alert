@@ -10,14 +10,42 @@ services:
       POSTGRES_DB: postgres
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: Welcome
+  keycloak:
+    image: jboss/keycloak:4.0.0.Final
+    environment:
+      - KEYCLOAK_USER=admin
+      - KEYCLOAK_PASSWORD=admin
+      - DB_VENDOR=postgres
+      - DB_USER=postgres
+      - DB_PASSWORD=Welcome
+      - DB_ADDR=db
+      - DB_PORT=5432
+      - DB_DATABASE=postgres
+    ports:
+      - "8080:8080"
 
-  app:
-    build:
-      context: ./
-      dockerfile: Dockerfile
+  gradle-continuous-builder:
+    image: gradle:6.7.0-jdk11
+    volumes:
+      - gradle-build:/home/gradle/project/.gradle
+      - ./:/home/gradle/project:cached
+    working_dir: /home/gradle/project
+    command: ["gradle","build","--continuous"]
+
+  gradle-execute:
+    image: gradle:6.7.0-jdk11
+    ports:
+      - "8000:8000"
     environment:
       username: postgres
       password: Welcome
       url: db:5432/postgres
-    ports:
-      - "8080:8080"
+    volumes:
+      - gradle-execution:/home/gradle/project/.gradle
+      - ./:/home/gradle/project:cached
+    working_dir: /home/gradle/project
+    command: ["gradle","bootRun","-s"]
+
+volumes:
+  gradle-execution:
+  gradle-build:

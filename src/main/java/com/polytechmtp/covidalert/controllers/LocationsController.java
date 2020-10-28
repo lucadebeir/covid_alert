@@ -17,12 +17,13 @@ public class LocationsController {
     private LocationRepository locationRepository ;
 
     @GetMapping
+    @RequestMapping(method = RequestMethod.GET)
     public List<Location> list(){
         return locationRepository.findAll();
     }
 
     @GetMapping
-    @RequestMapping("{id}")
+    @RequestMapping(value = "{id}", method = RequestMethod.GET)
     public Location get(@PathVariable Long id) {
         return locationRepository.getOne(id);
     }
@@ -33,13 +34,13 @@ public class LocationsController {
         return locationRepository.saveAndFlush(user);
     }
 
-    @RequestMapping(value = "{id}", method = RequestMethod.DELETE )
+    @RequestMapping(value = "{id}", method = RequestMethod.DELETE)
     public void delete ( @PathVariable Long id){
         // TODO: Toujours verifier s’il faut les enregistrements enfants
         locationRepository.deleteById(id);
     }
 
-    @RequestMapping(value="{id}",method = RequestMethod.PUT)
+    @RequestMapping(value="{id}", method = RequestMethod.PUT)
     public Location update (@PathVariable Long id , @RequestBody User user) {
         // TODO: Ajouter ici une validation si tous les champs ont ete passes
         // TODO: Sinon, retourner une erreur 400 (Bad Payload)

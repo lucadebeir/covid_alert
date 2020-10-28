@@ -8,3 +8,16 @@ spring:
 
 app:
   version: 1.0.0
+
+keycloak:
+  realm: Covid-alert
+  auth-server-url: http://keycloak:8080/auth
+  ssl-required: external
+  resource: springboot-microservice
+  credentials:
+    secret: 0444b510-8532-4a50-9eea-a031e53b5acb
+  use-resource-role-mappings: true
+  bearer-only: true
+
+server:
+  port: 8000
