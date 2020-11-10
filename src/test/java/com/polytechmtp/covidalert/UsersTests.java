@@ -22,6 +22,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.StreamingHttpOutputMessage;
 import org.springframework.mock.web.MockHttpServletResponse;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import java.util.ArrayList;
@@ -95,7 +96,7 @@ class UsersTests {
 	}
 
 
-/*
+
 	@Test
 	public void createUser() throws Exception {
 
@@ -118,25 +119,69 @@ class UsersTests {
 				"\"password\":\"abc\" " +
 				"}";
 
-		when(userRepository.saveAndFlush(user)).thenReturn(user);
 		mockMvc.perform(post("/api/v1/users")
 				.content(userString)
 				.contentType(MediaType.APPLICATION_JSON)
 				.accept(MediaType.APPLICATION_JSON)
 		)
 				.andDo(print())
-				.andExpect(status().isCreated())
-				.andExpect(jsonPath("$").exists());
+				.andExpect(status().isCreated());
 	}
 
 
-	public static String asJsonString(final Object obj) {
-		try {
-			return new ObjectMapper().writeValueAsString(obj);
-		}
-		catch (Exception e) {
-			throw new RuntimeException(e);
-		}
+
+	@Test
+	public void deleteUser() throws Exception {
+		long id = 1;
+		User user = new User(
+				1,
+				"Jean",
+				"Castex",
+				"test@test.fr",
+				"00000000000",
+				"abc",
+				null
+		);
+
+		when(userRepository.findById(id)).thenReturn(java.util.Optional.of(user));
+
+		mockMvc.perform(delete("/api/v1/users/1"))
+				.andDo(print())
+				.andExpect(status().isOk());
 	}
-*/
+
+
+	@Test
+	public void updateOne() throws Exception {
+		long id = 1;
+		User user = new User(
+				1,
+				"Jean",
+				"Castex",
+				"test@test.fr",
+				"00000000000",
+				"abc",
+				null
+		);
+
+		String userString = "{ " +
+				"\"user_id\":\"1\", " +
+				"\"first_name\":\"Jeannot\", " +
+				"\"last_name\":\"Castex\", " +
+				"\"email\":\"test@test.fr\", " +
+				"\"phone_number\":\"0000000000\", " +
+				"\"password\":\"abc\" " +
+				"}";
+		System.out.println(userString);
+		when(userRepository.findById(id)).thenReturn(java.util.Optional.of(user));
+		when(userRepository.getOne(id)).thenReturn(user);
+		mockMvc.perform(put("/api/v1/users/1")
+				.content(userString)
+				.contentType(MediaType.APPLICATION_JSON)
+				.accept(MediaType.APPLICATION_JSON)
+
+		)
+				.andDo(print())
+				.andExpect(status().isOk());
+	}
 }

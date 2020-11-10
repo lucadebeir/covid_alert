@@ -50,6 +50,7 @@ public class UsersController {
     }
 
     @PutMapping
+    @ResponseStatus(HttpStatus.OK)
     @RequestMapping(value="{id}", method = RequestMethod.PUT)
     public User update (@PathVariable Long id , @RequestBody User user) {
         // TODO: Ajouter ici une validation si tous les champs ont ete passes
@@ -60,6 +61,7 @@ public class UsersController {
         // TODO: Sinon, retourner une erreur 400 (Bad Payload)
         User existingUser = userRepository.getOne(id);
         //user.setUserId(id);
+
         BeanUtils.copyProperties(user,existingUser ,"user_id");
         return userRepository.saveAndFlush(existingUser);
     }
