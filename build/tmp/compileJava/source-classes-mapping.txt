@@ -1,13 +1,13 @@
-com/polytechmtp/covidalert/models/Location.java
- com.polytechmtp.covidalert.models.Location
+com/polytechmtp/covidalert/controllers/UsersController.java
+ com.polytechmtp.covidalert.controllers.UsersController
 com/polytechmtp/covidalert/config/KeycloakSecurityConfig.java
  com.polytechmtp.covidalert.config.KeycloakSecurityConfig
 com/polytechmtp/covidalert/repositories/LocationRepository.java
  com.polytechmtp.covidalert.repositories.LocationRepository
 com/polytechmtp/covidalert/CovidAlertApplication.java
  com.polytechmtp.covidalert.CovidAlertApplication
-com/polytechmtp/covidalert/controllers/LocationsController.java
- com.polytechmtp.covidalert.controllers.LocationsController
+com/polytechmtp/covidalert/repositories/UserRepository.java
+ com.polytechmtp.covidalert.repositories.UserRepository
 com/polytechmtp/covidalert/models/User.java
  com.polytechmtp.covidalert.models.User
 com/polytechmtp/covidalert/controllers/HomeController.java
@@ -16,7 +16,7 @@ com/polytechmtp/covidalert/controllers/TestController.java
  com.polytechmtp.covidalert.controllers.TestController
 com/polytechmtp/covidalert/config/SwaggerConfig.java
  com.polytechmtp.covidalert.config.SwaggerConfig
-com/polytechmtp/covidalert/repositories/UserRepository.java
- com.polytechmtp.covidalert.repositories.UserRepository
-com/polytechmtp/covidalert/controllers/UsersController.java
- com.polytechmtp.covidalert.controllers.UsersController
+com/polytechmtp/covidalert/models/Location.java
+ com.polytechmtp.covidalert.models.Location
+com/polytechmtp/covidalert/controllers/LocationsController.java
+ com.polytechmtp.covidalert.controllers.LocationsController
