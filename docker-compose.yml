@@ -31,6 +31,10 @@ services:
       - ./:/home/gradle/project:cached
     working_dir: /home/gradle/project
     command: ["gradle","build","--continuous"]
+    depends_on:
+      - kafka
+    links:
+      - kafka:kafka
 
   gradle-execute:
     image: gradle:6.7.0-jdk11
@@ -45,6 +49,30 @@ services:
       - ./:/home/gradle/project:cached
     working_dir: /home/gradle/project
     command: ["gradle","bootRun","-s"]
+    depends_on:
+      - kafka
+    links:
+      - kafka:kafka
+
+  zookeeper:
+    image: wurstmeister/zookeeper
+    ports:
+      - 2181:2181
+    container_name: zookeeper
+
+  kafka:
+    image: wurstmeister/kafka
+    container_name: kafka
+    ports:
+      - 9092:9092
+    depends_on:
+      - zookeeper
+    links:
+      - zookeeper:zookeeper
+    environment:
+      KAFKA_ADVERTISED_HOST_NAME: kafka
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_CREATE_TOPIC: "my_topic:1:3"
 
 volumes:
   gradle-execution:
