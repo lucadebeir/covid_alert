@@ -1,2 +1,6 @@
+com/polytechmtp/covidalert/LocationsTests.java
+ com.polytechmtp.covidalert.LocationsTests
 com/polytechmtp/covidalert/CovidAlertApplicationTests.java
  com.polytechmtp.covidalert.CovidAlertApplicationTests
+com/polytechmtp/covidalert/UsersTests.java
+ com.polytechmtp.covidalert.UsersTests

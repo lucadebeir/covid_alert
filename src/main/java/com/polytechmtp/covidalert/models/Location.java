@@ -21,6 +21,10 @@ public class Location {
     @JsonIgnore
     private List<User> users ;
 
+    public Location() {
+
+    }
+
     public void setLocation_id(String location_id) {
         this.location_id = location_id;
     }
@@ -50,6 +54,13 @@ public class Location {
     }
 
     public void setLocation_date(Date location_date) {
+        this.location_date = location_date;
+    }
+
+    public Location(String location_id, long latitude, long longitude, Date location_date) {
+        this.location_id = location_id;
+        this.latitude = latitude;
+        this.longitude = longitude;
         this.location_date = location_date;
     }
 }

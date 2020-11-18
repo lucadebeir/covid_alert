@@ -12,7 +12,7 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long user_id;
+    private String username;
     private String first_name;
     private String last_name;
     private String email;
@@ -21,11 +21,11 @@ public class User {
 
 
     @ManyToMany
-    @JoinTable (name="user_locations", joinColumns = @JoinColumn (name="user_id"), inverseJoinColumns = @JoinColumn(name="location_id"))
+    @JoinTable (name="user_locations", joinColumns = @JoinColumn (name="username"), inverseJoinColumns = @JoinColumn(name="location_id"))
     private List<Location > locations;
 
-    public User(long user_id, String first_name, String last_name, String email, String phone_number, String password, List<Location> locations) {
-        this.user_id = user_id;
+    public User(String username, String first_name, String last_name, String email, String phone_number, String password, List<Location> locations) {
+        this.username = username;
         this.first_name = first_name;
         this.last_name = last_name;
         this.email = email;
@@ -38,12 +38,12 @@ public class User {
 
     }
 
-    public long getUser_id() {
-        return user_id;
+    public String getUsername() {
+        return username;
     }
 
-    public void setUser_id(long user_id) {
-        this.user_id = user_id;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getFirst_name() {
@@ -97,7 +97,7 @@ public class User {
     @Override
     public String toString() {
         return "User{" +
-                "user_id=" + user_id +
+                "username=" + username +
                 ", first_name='" + first_name + '\'' +
                 ", last_name='" + last_name + '\'' +
                 ", email='" + email + '\'' +

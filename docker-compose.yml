@@ -7,22 +7,27 @@ services:
     ports:
       - "5432:5432"
     environment:
-      POSTGRES_DB: postgres
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: Welcome
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
   keycloak:
     image: jboss/keycloak:4.0.0.Final
     environment:
-      - KEYCLOAK_USER=admin
-      - KEYCLOAK_PASSWORD=admin
       - DB_VENDOR=postgres
-      - DB_USER=postgres
-      - DB_PASSWORD=Welcome
       - DB_ADDR=db
       - DB_PORT=5432
-      - DB_DATABASE=postgres
+      - DB_DATABASE=${POSTGRES_DB}
+      - DB_USER=${POSTGRES_USER}
+      - DB_SCHEMA=public
+      - DB_PASSWORD=${POSTGRES_PASSWORD}
+      - KEYCLOAK_USER=admin
+      - KEYCLOAK_PASSWORD=admin
+      - KEYCLOAK_IMPORT=./realm-export.json
+      - KEYCLOAK_FRONTEND_URL=http://localhost:8080/auth
     ports:
       - "8080:8080"
+    depends_on:
+      - db
 
   gradle-continuous-builder:
     image: gradle:6.7.0-jdk11
