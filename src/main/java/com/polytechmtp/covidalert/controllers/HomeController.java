@@ -15,7 +15,7 @@ public class HomeController {
     private String appVersion;
 
     @GetMapping
-    @RequestMapping("/")
+    @RequestMapping(value = "/")
     public HashMap<String, String> get () {
         System.out.println(appVersion);
         HashMap<String, String> map = new HashMap<String, String>();

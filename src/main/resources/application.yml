@@ -1,8 +1,8 @@
 spring:
   datasource:
-    url: jdbc:postgresql://db:5432/postgres
-    username: postgres
-    password: Welcome
+    url: jdbc:postgresql://db:5432/${POSTGRES_DB}
+    username: ${POSTGRES_USER}
+    password: ${POSTGRES_PASSWORD}
     hikari:
       connectionTimeout: 30000
 
@@ -10,14 +10,11 @@ app:
   version: 1.0.0
 
 keycloak:
-  realm: Covid-alert
-  auth-server-url: http://keycloak:8080/auth
+  realm: covid-alert
+  auth-server-url: http://localhost:8080/auth
   ssl-required: external
-  resource: springboot-microservice
-  credentials:
-    secret: 0444b510-8532-4a50-9eea-a031e53b5acb
-  use-resource-role-mappings: true
-  bearer-only: true
+  resource: my-react-client
+  public-client: true
 
 server:
   port: 8000

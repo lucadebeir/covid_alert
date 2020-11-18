@@ -20,6 +20,7 @@ public class UsersController {
     private UserRepository userRepository ;
 
     @GetMapping
+    @CrossOrigin(origins = "http://localhost:3000")
     @RequestMapping(method = RequestMethod.GET)
     public List<User> list(){
         return userRepository.findAll();
