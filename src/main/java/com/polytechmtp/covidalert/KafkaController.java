@@ -14,7 +14,12 @@ public class KafkaController {
     }
 
     @PostMapping("/publish")
-    public void writeMessageToTopic(@RequestParam("message") String message){
+    public void writeMessageToTopic(@RequestParam("userId") String userId,
+                                    @RequestParam("latitude") String latitude,
+                                    @RequestParam("longitude") String longitude,
+                                    @RequestParam("date") String date){
+
+        String message = userId + "," + latitude + "," + longitude + "," + date;
         this.producer.writeMessage(message);
 
     }
